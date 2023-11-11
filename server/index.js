@@ -23,6 +23,28 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.get('/callback', async (req, res) => {
+    const code = req.query.code; // Extract the 'code' parameter from the incoming request
+
+    const query = new URLSearchParams({
+        client_id: 'R09HSDA1W9P1IPDX8FBH2PGR45USO7J9',
+        client_secret: 'YYKJCVDZ09WFA3Z9GZ648O48T6DKI04GPFOYXV97CPT3ATAVC06I6J2931C0SUAV',
+        code: code,
+    }).toString();
+
+    const resp = await fetch(
+        `https://api.clickup.com/api/v2/oauth/token?${query}`,
+        { method: 'POST' }
+    );
+
+    const data = await resp.json(); // Assuming the response is in JSON format
+    console.log(data);
+
+    // Handle the response accordingly, e.g., store the access token, etc.
+    res.send('Authorization successful!');
+});
+
+
 const fs = require('fs');
 const https = require('https');
 
