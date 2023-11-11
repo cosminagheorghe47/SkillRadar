@@ -1,0 +1,37 @@
+<div class="login">
+    <div class="form">
+        <div class="heading">
+            <img src="assets\icons\logo.png" alt="StreamFever Logo" class="logo-heading">
+            <h3 class="text-heading">
+                Login
+            </h3>
+        </div>
+        
+        <div class="body">
+            <form [formGroup]="loginForm">
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
+                        <span class="fa fa-user p-2"></span>
+    
+                        <input formControlName='username' type="text" placeholder="Username">
+                    </div>
+                </div>
+                <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')" class="text-danger">*The username is required.</small>
+        
+
+                <div class="form-group pt-3">
+                    <div class="input-field" [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
+                        <span class="fa fa-lock p-2"></span>
+    
+                        <input formControlName='password' [type]="type" placeholder="Password">
+                        <span (click)="hideShowPassword()" class="fa {{eyeIcon}} me-2" id="fa-eye-icon"></span>
+                    </div>
+                </div>
+                <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" class="text-danger">*The password is required.</small>
+    
+                <button (click)="onSubmit()" type="submit" class="button">Login</button>
+                <div class="text-center pt-4 text-muted">You don't have an account yet? <a routerLink="/signup">Sign Up</a></div>
+            </form>
+        </div> 
+    </div>
+</div>

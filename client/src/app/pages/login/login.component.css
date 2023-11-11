@@ -1,0 +1,50 @@
+.login {
+    font-family: Jost;
+
+    background: linear-gradient(to bottom, rgb(39, 3, 94), rgb(26, 2, 59));    
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-heading {
+    display: block;
+    height: auto;
+    max-height: 50px;
+
+    margin-top: 27px;
+
+    border-radius: 17%;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input[type='password'] {
+    background-color: rgb(208, 210, 235);
+    width: 100%;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.input-field input[type='password']:-internal-autofill-selected {
+    box-shadow: 0 0 0 30px rgb(208, 210, 235) inset;
+}
+
+#fa-eye-icon:hover {
+    color: rgb(39, 3, 94);
+}
+
+a {
+    color: rgba(100,110,203,255);
+    min-width: 100px;
+    margin-left: auto;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(39, 3, 94);
+    }
+}
