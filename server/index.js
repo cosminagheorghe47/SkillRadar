@@ -1,4 +1,5 @@
-// server.js
+import authRoutes from "./routes/auth.js";
+import usersRoutes from "./routes/users.js";
 
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
@@ -48,7 +49,8 @@ app.get('/callback', async (req, res) => {
 const fs = require('fs');
 const https = require('https');
 
-
+app.use('/auth',authRoutes);
+app.use('/users',usersRoutes);
 
 const privateKey = fs.readFileSync('server.key', 'utf8');
 const certificate = fs.readFileSync('server.cert', 'utf8');
