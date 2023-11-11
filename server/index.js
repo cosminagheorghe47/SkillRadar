@@ -1,12 +1,19 @@
 import authRoutes from "./routes/auth.js";
 import usersRoutes from "./routes/users.js";
 
-require('dotenv').config(); // Load environment variables from .env file
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const enforce = require('express-sslify');
-const helmet = require('helmet');
+import fs from 'fs';
+import https from 'https';
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import enforce from 'express-sslify';
+import helmet from 'helmet';
+
+
+
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 const port = 8005
@@ -23,7 +30,7 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-
+/*
 app.get('/callback', async (req, res) => {
     const code = req.query.code; // Extract the 'code' parameter from the incoming request
 
@@ -43,11 +50,10 @@ app.get('/callback', async (req, res) => {
 
     // Handle the response accordingly, e.g., store the access token, etc.
     res.send('Authorization successful!');
-});
+});*/
 
 
-const fs = require('fs');
-const https = require('https');
+
 
 app.use('/auth',authRoutes);
 app.use('/users',usersRoutes);

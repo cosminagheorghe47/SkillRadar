@@ -1,10 +1,10 @@
 import express from "express";
-import { login, register } from "../controllers/auth.js";
+import { initiateClickup } from "../controllers/users.js";
 
 const router = express.Router();
 
 /* CREATE */
-router.post("/initiateClickup", initiateClickup);
+router.get("/initiateClickup", initiateClickup);
 //router.post("/editUser",editUser);
 
 export default router;

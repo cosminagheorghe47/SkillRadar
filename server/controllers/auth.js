@@ -7,11 +7,10 @@ export const register = async (req, res) => {
   try {
     // Extract user data from the request body
     const {
-      firstName,
-      lastName,
       email,
+      userName,
       password,
-      accessToken,
+
     } = req.body;
 
     // Generate a salt and hash the password
@@ -20,11 +19,9 @@ export const register = async (req, res) => {
 
     // Create a new user instance
     const newUser = new User({
-      firstName,
-      lastName,
       email,
+      userName,
       password: passwordHash,
-      accessToken,
     });
 
     // Save the user to the database

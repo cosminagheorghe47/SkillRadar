@@ -19,13 +19,13 @@ export const getUser = async (req, res) => {
 
 export const editUser = async (req, res) => {
   try {
-    const { firstName, lastName, accessToken } = req.body;
+    const { userName, accessToken } = req.body;
     const { id } = req.params;
 
     // Find the user with the provided ID and update their profile data
     const updatedProfile = await User.findByIdAndUpdate(
       id,
-      { firstName, lastName, accessToken},
+      { userName, accessToken},
       { new: true }
     );
 
@@ -33,7 +33,7 @@ export const editUser = async (req, res) => {
     try {
       await Post.updateMany(
         { userId: id },
-        { $set: { firstName, lastName, userPicturePath: picturePath } }
+        { $set: { userName, userPicturePath: picturePath } }
       );
     } catch (err) {
       console.error(err);
@@ -62,17 +62,21 @@ export const initiateClickup= async (req, res) => {
         { method: 'POST' }
     );
 
-    const { id } = req.params;
+
     const data = await resp.json(); // Assuming the response is in JSON format
     const user = await User.findById('648ad684f8d74df007111f7d');
-    const {accessToken } = data.access_Token;
+    console.log(data);
+    console.log("Acces Token : ",data.access_token);
+    console.log("User : " , User.findById('654fe4efe0c89dad2d51d8c4'));
+    const {accessToken } = data.access_token;
+;
     const updatedProfile = await User.findByIdAndUpdate(
-        id,
+        '654fe4efe0c89dad2d51d8c4',
         {accessToken},
         { new: true }
       );
     console.log(data);
-
+    res.status(200).json(updatedProfile);
     // Handle the response accordingly, e.g., store the access token, etc.
     res.send('Authorization successful!');
 };
